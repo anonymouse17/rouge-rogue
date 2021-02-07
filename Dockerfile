@@ -17,4 +17,4 @@ RUN pip install -r requirements.txt
 COPY . ./
 COPY --from=frontend /app/build/ simmadome/build/
 
-CMD ["python", "the_prestige.py"]
+CMD ["python", "rougerogue.py"]

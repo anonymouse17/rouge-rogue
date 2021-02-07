@@ -4,7 +4,7 @@ OUTPUTS = $(wildcard ./simmadome/build/*)
 .PHONY: run frontend
 
 run: $(OUTPUTS)
-	python3 the_prestige.py
+	python3 rougerogue.py
 
 frontend:
 	(cd simmadome && npm run build)

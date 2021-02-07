@@ -38,8 +38,8 @@ def search_teams():
 
     return jsonify([json.loads(x[0])['name'] for x in result]) #currently all we need is the name but that can change
 
-MAX_SUBLEAGUE_DIVISION_TOTAL = 22;
-MAX_TEAMS_PER_DIVISION = 12;
+MAX_SUBLEAGUE_DIVISION_TOTAL = 22
+MAX_TEAMS_PER_DIVISION = 12
 
 @app.route('/api/leagues', methods=['POST'])
 def create_league():
