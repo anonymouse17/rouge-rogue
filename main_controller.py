@@ -8,6 +8,9 @@ import database as db
 app = Flask("the-prestige", static_folder='simmadome/build')
 flask_config_filename = "data/flask_config.json"
 
+
+if not os.path.exists(os.path.dirname(flask_config_filename)):
+    os.makedirs(os.path.dirname(flask_config_filename))
 # this is just copied from rougerogue.py
 if not os.path.exists(flask_config_filename):
     #generate default config
