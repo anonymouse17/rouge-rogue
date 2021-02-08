@@ -6,8 +6,22 @@ from flask_socketio import SocketIO, emit
 import database as db
 
 app = Flask("the-prestige", static_folder='simmadome/build')
-app.config['SECRET KEY'] = 'dev'
-#app.config['SERVER_NAME'] = '0.0.0.0:5000'
+flask_config_filename = "data/flask_config.json"
+
+# this is just copied from rougerogue.py
+if not os.path.exists(flask_config_filename):
+    #generate default config
+    config_dic = {
+        "SECRET_KEY": "dev",
+        "SERVER_NAME": "0.0.0.0:5000"
+    }
+    with open(flask_config_filename, "w") as config_file:
+        json.dump(config_dic, config_file, indent=4)
+        print("fill in flask_config.json!")
+        quit()
+else:
+    app.config.from_json(flask_config_filename)
+
 socketio = SocketIO(app)
 
 # Serve React App
@@ -113,7 +127,7 @@ def create_league():
 
 ### SOCKETS
 
-thread2 = threading.Thread(target=socketio.run,args=(app,'0.0.0.0'))
+thread2 = threading.Thread(target=socketio.run,args=(app,))
 thread2.start()
 
 master_games_dic = {} #key timestamp : (game game, {} state)
